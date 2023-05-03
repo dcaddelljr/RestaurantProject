@@ -29,7 +29,6 @@ class Program
         restaurant.City = JObject.Parse(response.Content)["restaurants"][0]["cityName"].ToString();
         restaurant.State = JObject.Parse(response.Content)["restaurants"][0]["stateName"].ToString();
 
-
         Console.WriteLine(restaurant.RestaurantName);
         Console.WriteLine(restaurant.ZipCode);
         Console.WriteLine(restaurant.PhoneNumber);

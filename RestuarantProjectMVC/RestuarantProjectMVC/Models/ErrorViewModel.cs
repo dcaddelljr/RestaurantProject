@@ -1,4 +1,5 @@
-﻿namespace RestuarantProjectMVC.Models;
+﻿#nullable enable
+namespace RestuarantProjectMVC.Models;
 
 public class ErrorViewModel
 {

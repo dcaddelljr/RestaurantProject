@@ -1,0 +1,71 @@
+﻿@*@model IEnumerable<RestuarantProjectMVC.Models.RestaurantMVC>*@
+@using RestuarantProjectMVC;
+@{
+    //RestaurantMVC restaurant = ViewBag.Restaurant as RestaurantMVC;
+    RestaurantAPIResult results = ViewData.Model;
+}
+
+
+<br />
+<div class="text-center align-items-center">
+    <h2>Restaurants</h2>
+
+    <table class=" table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Restaurant</th>
+                <th>Phone Number</th>
+                <th>Hours</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>State</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            @foreach (var rest in results.restaurants)
+            {
+                <tr>
+                    <td>@rest.restaurantName</td>
+                    <td>@rest.phone </td>
+                    <td>@rest.hoursInterval </td>
+                    <td>@rest.address </td>
+                    <td>@rest.cityName </td>
+                    <td>@rest.stateName </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+  </div>
+
+    <div class="container text-center">
+        <ul class="pagination justify-content-center">
+            @{
+                int pageCount = (int)Math.Ceiling(results.matching_results / 10.0);
+
+                if (results.matching_results > 10.0)
+                {
+                    
+                    @for (int i = 0; i < pageCount; i++)
+                    {
+                        <li class="page-item text-center">@Html.ActionLink((i + 1).ToString(), "Index", "RestaurantMVC", new { zipCode = ViewBag.ZipCode, page = i }, new Dictionary<string, object> { { "class", "page" } })</li>
+                    }
+
+                }
+            }
+        </ul>
+    </div>
+    <div class="container text-center">
+        @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+
+        {
+
+            <input type="submit" value="Back to Home" class="btn btn-primary" />
+
+        }
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+
+
